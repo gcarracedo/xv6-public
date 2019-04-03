@@ -1,0 +1,14 @@
+lenguage: c
+script: make && make fs.img
+deploy:
+  provider: releases
+  api_key:
+    secure: g3wv5DOCVf7PFJgelX+GSAXOsUJIwBYhd2UDVqdewB8E8lgQM6L2tOfizbJHR+c6O3Y5NvsLuGsT+a0KIKyvIrJ5YiIdZ4LdhdJHOy4My9qXztcw7ZDNkonVKoVlJS7hHMfNcDgT/6vKmcv1x55OJ9AgRVk0LTUuGdmtSkOiDS7/rQLjBlMh/FukDi8JTJr/lojWrQzGGlfXkFEgHTanTZHY0p3+IG3Vagb2zGw8c+ST3RUP53ICd2zSEY3vszDYhAaPQOOVJ/y2TAFvTuAqaTv9RiNXKQhUQdXVZCv+/OM49SrYHZbDqpbhZ/5xeIT9R34WQtY2myh0WQCdwNlVtwMeNYkOImxGeavHtyZa5rbG52ozcfFOms2x6s9FBMVNnSAwMEbQb3QO7qX9/TKqg7U+u1OGbtB5M+f9CKxhnuuCaEa7j/jSvkA6+w7W4umpts4BIn67WdQhEslqKjo1cctjpzkW5C1weyppdEWQ9Z1hP015LpM8WKXpnuG85mzpkw2rtAze/oPb7sGqSL7lvjHOAzNeL/0kBCSJ4Gxj+aLVSut2XOIAEYHmnOZnAALSQou/N7ODt5S81KlM1Q7ltjjGbfN5p8wBzwnpp49BvOwanv9EQxlg5fH7e99TmqTD+0+XHlJMNgC+fFyUFOX+4Wh/jacHfnBwXo0Ax9AsBxs=
+  file: 
+  - fs.img
+  - xv6.img
+  skip_cleanup: true
+  on:
+    repo: gcarracedo/xv6-public
+    branch: project_1
+    tags: true

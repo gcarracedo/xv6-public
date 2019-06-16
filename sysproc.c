@@ -93,5 +93,18 @@ sys_uptime(void)
 int
 sys_getprocs(void)
 {
-  return myproc()->pid;
+  int procs;
+  int UnusedyZombies;
+  procs = 0;
+  UnusedyZombies = 0;
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    If(p->state != UNUSED && p->state != ZOMBIE)
+    procs++;
+    else
+    UnusedyZombies++;
+  }
+  // mensage de debugg
+  printf("Hay %i procesos y %i unused o zombies\n", procs, UnusedyZombies);
+  // mensage de debugg
+  return procs;
 }

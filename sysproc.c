@@ -102,7 +102,6 @@ sys_getprocs(void)
   struct proc proc[NPROC];
 } ptable;
 
-  acquire(&ptable.lock);
 
   procs = 0;
   UnusedyZombies = 0;
@@ -113,7 +112,7 @@ sys_getprocs(void)
     UnusedyZombies++;
   }
 
-    release(&ptable.lock);
+
   /* mensage de debugg
    printf("Hay %i procesos y %i unused o zombies\n", procs, UnusedyZombies);
    mensage de debugg */

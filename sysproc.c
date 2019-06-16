@@ -96,7 +96,7 @@ sys_getprocs(void)
   int procs;
   int UnusedyZombies;
   struct proc *p;
-  
+  struct ptable;
 
   acquire(&ptable.lock);
 

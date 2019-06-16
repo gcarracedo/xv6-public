@@ -97,7 +97,7 @@ sys_getprocs(void)
   int UnusedyZombies;
   procs = 0;
   UnusedyZombies = 0;
-  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+  for(int p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state != UNUSED && p->state != ZOMBIE)
     procs++;
     else

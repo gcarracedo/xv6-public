@@ -95,16 +95,23 @@ sys_getprocs(void)
 {
   int procs;
   int UnusedyZombies;
+  struct proc *p;
+  char *sp;
+
+  acquire(&ptable.lock);
+
   procs = 0;
   UnusedyZombies = 0;
-  for(int p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
     if(p->state != UNUSED && p->state != ZOMBIE)
     procs++;
     else
     UnusedyZombies++;
   }
-  // mensage de debugg
-  printf("Hay %i procesos y %i unused o zombies\n", procs, UnusedyZombies);
-  // mensage de debugg
+
+    release(&ptable.lock);
+  /* mensage de debugg
+   printf("Hay %i procesos y %i unused o zombies\n", procs, UnusedyZombies);
+   mensage de debugg */
   return procs;
 }

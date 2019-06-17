@@ -6,8 +6,8 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 struct {
   struct spinlock lock;

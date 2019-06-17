@@ -6,7 +6,8 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
-
+#include "stdio.h"
+#include "stdlib.h"
 
 struct {
   struct spinlock lock;
@@ -353,7 +354,7 @@ scheduler(void)
        continue;
      }
 
-    
+
     proc = p;
     switchuvm(p);
     p->state = RUNNING;

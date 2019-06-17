@@ -324,12 +324,11 @@ void
 scheduler(void)
 {
   struct proc *p;
-  int estado;
   int numero_tickets;
   int ticket_ganador;
   int contador;
 
-  estado = 1;
+
 
   contador = 0;
 
@@ -338,9 +337,8 @@ scheduler(void)
     // Enable interrupts on this processor.
     sti();
 
-    if (!estado) hlt();
-    estado = 0;
-    acquire (&ptable.lock):
+
+    acquire (&ptable.lock);
 
     contador = 0;
     numero_tickets = 100;
@@ -355,7 +353,7 @@ scheduler(void)
        continue;
      }
 
-    estado = 1;
+    
     proc = p;
     switchuvm(p);
     p->state = RUNNING;

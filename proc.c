@@ -6,7 +6,8 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
-#include "rand.h"
+#include "stdio.h"
+#include "stdlib.h"
 
 struct {
   struct spinlock lock;
@@ -343,8 +344,8 @@ scheduler(void)
     acquire (&ptable.lock):
 
     contador = 0;
-    numero_tickets = lotery_Total();
-    ticket_ganador = random_at_most(numero_tickets);
+    numero_tickets = 100;
+    ticket_ganador = rand() % 100;
 
     for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
      if(p->state != RUNNABLE)

@@ -345,14 +345,16 @@ scheduler(void)
     numero_tickets = lotteryTotal();
     ticket_ganador = lcg_rand(contador);
 
-    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-     if(p->state != RUNNABLE)
-     continue;
+    if(numero_tickets < ticket_ganador)
+    ticket_ganador %= numero_tickets;
 
-     if ((contador + p->tickets) < ticket_ganador){
-       contador += p->tickets;
+    for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+     if(p->state == RUNNABLE)
+     ticket_ganador-=p->tickets;
+
+     if (p->state !=RUNNABLE || ticket_ganador >= 0)
        continue;
-     }
+
 
 
     proc = p;
@@ -362,7 +364,7 @@ scheduler(void)
     swtchkvm();
 
     proc = 0;
-    break;
+
 
     }
 
@@ -372,6 +374,25 @@ scheduler(void)
 
   }
 }
+
+static
+unsigned long
+lcg_rand(unsigned long x){
+  unsigned long y=274427669, z=1729384756;
+  return (x * y) % z;
+}
+
+int lotteryTotal(void){
+  struct proc *p;
+  int numero_tickets = 0;
+
+  for(p = ptable.proc; p< &ptable.proc[NPROC]; p++){
+    if(p->state==RUNNABLE)
+    numero_tickets+=p->tickets;
+  }
+  return numero_tickets;
+}
+
 
 // Enter scheduler.  Must hold only ptable.lock
 // and have changed proc->state. Saves and restores

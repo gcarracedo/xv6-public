@@ -6,7 +6,7 @@
 #include "x86.h"
 #include "proc.h"
 #include "spinlock.h"
-#include <rand.h>
+
 
 struct {
   struct spinlock lock;
@@ -335,14 +335,15 @@ scheduler(void)
 
   for(;;){
     // Enable interrupts on this processor.
+    contador++;
     sti();
 
 
     acquire (&ptable.lock);
 
     contador = 0;
-    numero_tickets = 100;
-    ticket_ganador = rand() % 100;
+    numero_tickets = lotteryTotal();
+    ticket_ganador = lcg_rand(contador);
 
     for (p = ptable.proc; p < &ptable.proc[NPROC]; p++){
      if(p->state != RUNNABLE)

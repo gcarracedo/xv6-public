@@ -346,7 +346,8 @@ scheduler(void)
   int numero_tickets;
   int ticket_ganador;
   int contador;
-
+  struct cpu *c = mycpu();
+  c->proc = 0;
 
 
   contador = 0;
@@ -376,13 +377,12 @@ scheduler(void)
 
 
 
-    proc = p;
+    c->proc = p;
     switchuvm(p);
     p->state = RUNNING;
-    swtch(&cpu->scheduler, proc->context);
-    swtchkvm();
-
-    proc = 0;
+    swtch(&(cpu->scheduler), proc->context);
+    switchkvm();
+    c->proc = 0;
 
 
     }

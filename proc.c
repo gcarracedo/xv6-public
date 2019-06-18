@@ -380,7 +380,7 @@ scheduler(void)
     c->proc = p;
     switchuvm(p);
     p->state = RUNNING;
-    swtch(&cpu->scheduler, proc->context);
+    swtch(&c->scheduler, p->context);
     switchkvm();
     c->proc = 0;
 

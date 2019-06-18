@@ -312,6 +312,25 @@ wait(void)
   }
 }
 
+static
+unsigned long
+lcg_rand(unsigned long x){
+  unsigned long y=274427669, z=1729384756;
+  return (x * y) % z;
+}
+
+int lotteryTotal(void){
+  struct proc *p;
+  int numero_tickets = 0;
+
+  for(p = ptable.proc; p< &ptable.proc[NPROC]; p++){
+    if(p->state==RUNNABLE)
+    numero_tickets+=p->tickets;
+  }
+  return numero_tickets;
+}
+
+
 //PAGEBREAK: 42
 // Per-CPU process scheduler.
 // Each CPU calls scheduler() after setting itself up.
@@ -375,23 +394,7 @@ scheduler(void)
   }
 }
 
-static
-unsigned long
-lcg_rand(unsigned long x){
-  unsigned long y=274427669, z=1729384756;
-  return (x * y) % z;
-}
 
-int lotteryTotal(void){
-  struct proc *p;
-  int numero_tickets = 0;
-
-  for(p = ptable.proc; p< &ptable.proc[NPROC]; p++){
-    if(p->state==RUNNABLE)
-    numero_tickets+=p->tickets;
-  }
-  return numero_tickets;
-}
 
 
 // Enter scheduler.  Must hold only ptable.lock

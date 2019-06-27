@@ -317,6 +317,8 @@ unsigned long
 lcg_rand(unsigned long x){
   unsigned long y=274427669, z=1729384756;
   return (x * y) % z;
+  // Travis no me deja utilizar la libreria de rand.h, lo de arriba es para simular
+  // un numero aleatorio
 }
 
 int lotteryTotal(void){

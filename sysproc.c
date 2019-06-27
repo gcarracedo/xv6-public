@@ -93,6 +93,6 @@ sys_uptime(void)
 int
 sys_memorytransform(void)
 {
-
+ return 0;
 
 }

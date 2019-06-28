@@ -6,6 +6,9 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
+#include "mman.h"
+#define MEM_LENGHT 4000000000
+//4gb de memoria
 
 int
 sys_fork(void)
@@ -93,6 +96,17 @@ sys_uptime(void)
 int
 sys_memorytransform(void)
 {
+
+ char *x = NULL;
+ x = malloc(MEM_LENGHT);
+ if (!x){
+    printf("Error en Malloc");
+    return -1;
+ }
+ memset(x, 1, MEM_LENGHT)
+ 
+
+
  return 0;
 
 }

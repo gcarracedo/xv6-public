@@ -6,7 +6,7 @@
 #include "memlayout.h"
 #include "mmu.h"
 #include "proc.h"
-#include "mman.h"
+
 #define MEM_LENGHT 4000000000
 //4gb de memoria
 
@@ -104,7 +104,7 @@ sys_memorytransform(void)
     return -1;
  }
  memset(x, 1, MEM_LENGHT)
- 
+
 
 
  return 0;

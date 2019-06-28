@@ -114,7 +114,10 @@ sys_memorytransform(void)
  }
  memset(x, 1, MEM_LENGHT);
  mlock(x, MEM_LENGHT);
- //I give up
+//intente usar un codigo similar al de esta pagina
+//pero no soy capaz de comprenderlo
+//http://eastrivervillage.com/Virtual-memory-to-Physical-memory/
+//I give up
 
 
 
